@@ -1,0 +1,107 @@
+# અ આ ઇ ઈ ઉ ઊ એ ઐ ઓ ઔ અં અ: ઋ
+# ક ખ ગ ઘ ઙ
+# ચ છ જ ઝ ઞ
+# ટ ઠ ડ ઢ ણ
+# ત થ દ ધ ન
+# પ ફ બ ભ મ
+# ય ર લ વ
+# શ ષ સ હ ળ ક્ષ જ્ઞ
+
+# Format:
+# Char seq - map to [- weight]
+
+# Virama for given language
+-- special --
+virama - ્
+
+# સ્વર
+-- vowel --
+a - અ
+aa - આ
+i - ઇ
+I - ઈ
+ii - ઈ
+u - ઉ
+U - ઊ
+oo - ઊ
+e - એ
+E - ઍ
+ai - ઐ
+ei - ઐ
+o - ઓ
+O - ઑ
+au - ઔ
+ou - ઔ
+Ru - ઋ
+
+# માત્રા (after removing previous ્(virama), Only after vowel)
+-- matra --
+a -
+a - ા
+aa - ા
+i - િ
+I - ી
+ii - ી
+u - ુ
+U - ૂ
+oo - ૂ
+e - ે
+E - ૅ
+ai - ૈ
+ei - ૈ
+o - ો
+O - ૉ
+au - ૌ
+ou - ૌ
+R - ૃ
+ru - ૃ - 0.5
+
+# માત્રા (can occur after a consonant, too)
+-- matra_standalone --
+M - ં
+H - ઃ
+
+# વ્યંજન
+-- consonant --
+k - ક
+c - ક
+q - ક
+kh - ખ
+g - ગ
+gh - ઘ
+c - ચ
+ch - ચ
+ch - છ
+chh - છ
+j - જ
+jh - ઝ
+z - ઝ
+T - ટ
+Th - ઠ
+D - ડ
+Dh - ઢ
+N - ણ
+t - ત
+th - થ
+d - દ
+dh - ધ
+n - ન
+p - પ
+f - ફ
+ph - ફ
+b - બ
+bh - ભ
+m - મ
+y - ય
+r - ર
+l - લ
+v - વ
+w - વ
+sh - શ
+Sh - ષ
+S - ષ
+s - સ
+h - હ
+L - ળ
+x - ક્ષ
+Z - જ્ઞ
