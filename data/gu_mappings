@@ -8,7 +8,7 @@
 # શ ષ સ હ ળ ક્ષ જ્ઞ
 
 # Format:
-# Char seq - map to [- weight]
+# Char seq - map to [- weight in percentage]
 
 # Virama for given language
 -- special --
@@ -54,11 +54,12 @@ O - ૉ
 au - ૌ
 ou - ૌ
 R - ૃ
-ru - ૃ - 0.5
+ru - ૃ - 50
 
 # માત્રા (can occur after a consonant, too)
 -- matra_standalone --
 M - ં
+n - ં
 H - ઃ
 
 # વ્યંજન

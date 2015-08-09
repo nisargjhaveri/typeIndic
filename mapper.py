@@ -29,7 +29,7 @@ def loadFile(fileName):
                 _specialMaps[mapping[0]] = mapping[1]
 
             if len(mapping) <= 2:
-                mapping.append(1)  # Set default weight
+                mapping.append(100)  # Set default weight
 
             if mapping[0] not in _mappings:
                 _mappings[mapping[0]] = []
@@ -57,8 +57,9 @@ def getMaps(chunk):
     for aChunk in allMapChunks:
         if aChunk == chunk:
             continue;
-        returnMappings.extend(_mappings[aChunk])
-        # May want to lower the weight
+        for mapping in _mappings[aChunk]:
+            mapping[2] /= 2
+            returnMappings.append(mapping)
 
     return returnMappings
 

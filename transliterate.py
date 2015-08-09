@@ -14,7 +14,8 @@ def _isTypeAllowd(prevType, thisType):
         else:
             return False
 
-    if thisType == 'matra_standalone' and prevType == 'matra_standalone':
+    if thisType == 'matra_standalone' and \
+        (prevType == 'matra_standalone' or prevType == ''):
         return False
 
     return True
@@ -25,9 +26,14 @@ def _getGlue(prevType, thisType):
 
     return ['']
 
-def _processTransliterate(seqLeft, previous = u'', lastMapType = u''):
+def _processTransliterate(seqLeft, previous = u'', lastMapType = u'', score = []):
+    if not len(seqLeft):
+        _results.append([previous, score])
+        return
+
     i = 1
     chunk = ''
+
     while i <= len(seqLeft) and mapper.shouldContinue(chunk):
         chunk = seqLeft[:i]
         chunkLeft = seqLeft[i:]
@@ -38,10 +44,14 @@ def _processTransliterate(seqLeft, previous = u'', lastMapType = u''):
             if not _isTypeAllowd(lastMapType, mapping[1]):
                 continue
             glues = _getGlue(lastMapType, mapping[1])
+
             for glue in glues:
-                _processTransliterate(chunkLeft, previous + glue + mapping[0], mapping[1])
-                if not len(chunkLeft):
-                    _results.append(previous + glue + mapping[0])
+                _processTransliterate(
+                    chunkLeft,
+                    previous + glue + mapping[0],
+                    mapping[1],
+                    score + [mapping[2]]
+                )
 
         i += 1
 
@@ -50,9 +60,11 @@ def transliterate(word):
     global _results
     _results = []
     _processTransliterate(word)
-    return _results[:]
+    result = map(lambda x: (x[0], sum(x[1]) / float(len(x[1]))), _results)
+    result.sort(key=lambda x: x[1], reverse = True)
+    return result
 
 if __name__ == '__main__':
     result = transliterate('nisarg')
     for i in result:
-        print i.encode('utf-8')
+        print i[0].encode('utf-8'), i[1]
